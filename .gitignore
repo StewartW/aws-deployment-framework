@@ -1,4 +1,5 @@
 .vscode
+.idea
 .pyc
 .zip
 .DS_Store
@@ -135,3 +136,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
