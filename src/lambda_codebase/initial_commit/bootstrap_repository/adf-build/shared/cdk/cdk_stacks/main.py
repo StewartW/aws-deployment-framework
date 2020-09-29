@@ -11,6 +11,7 @@ from cdk_constructs import adf_notifications
 from logger import configure_logger
 
 from cdk_stacks.adf_default_pipeline import generate_adf_default_pipeline as generate_default_pipeline, PIPELINE_TYPE as DEFAULT_PIPELINE
+from cdk_stacks.adf_cdk_pipeline import generate_cdk_pipeline, PIPELINE_TYPE as CDK
 
 LOGGER = configure_logger(__name__)
 
@@ -27,7 +28,10 @@ class PipelineStack(core.Stack):
         self.generate_pipeline(_pipeline_type, stack_input)
 
     def generate_pipeline(self, _pipeline_type, stack_input):
+        LOGGER.info(f"Recieved Pipeline Type: {_pipeline_type}")
         if _pipeline_type == DEFAULT_PIPELINE:
             generate_default_pipeline(self, stack_input)
+        elif _pipeline_type == CDK:
+            generate_cdk_pipeline(self, stack_input)
         else:
             raise ValueError(f'{_pipeline_type} is not defined in main.py')
